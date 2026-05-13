@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out | Interacta</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <canvas id="bgCanvas"></canvas>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo"><a href="index.html" style="text-decoration:none;"><h1>INTERACTA</h1></a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li>
+                    <div class="theme-toggle-wrap" id="themeToggle">
+                        <div class="toggle-track">
+                            <span class="toggle-icon toggle-sun"><i class="fas fa-sun"></i></span>
+                            <span class="toggle-icon toggle-moon"><i class="fas fa-moon"></i></span>
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="auth-section">
+        <div class="auth-card" style="text-align:center;">
+            <div class="logout-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="auth-logo">INTERACTA</div>
+            <h2 style="margin-top:12px;">You're signed out</h2>
+            <p class="auth-sub" style="margin-bottom:32px;">Thanks for using Interacta. See you next time!</p>
+
+            <a href="login.html" class="btn btn-primary btn-full" style="display:block;margin-bottom:14px;">Log Back In</a>
+            <a href="index.html" class="btn btn-outline btn-full" style="display:block;">Back to Home</a>
+
+            <p style="margin-top:28px;font-size:0.82rem;opacity:0.5;" id="redirectNote">Redirecting to home in <span id="countdown">10</span>s…</p>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script src="js/background.js"></script>
+    <script>
+        let t = 10;
+        const cd = document.getElementById('countdown');
+        const iv = setInterval(() => {
+            t--;
+            if (cd) cd.textContent = t;
+            if (t <= 0) { clearInterval(iv); window.location.href = 'index.html'; }
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Interacta</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <canvas id="bgCanvas"></canvas>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo"><a href="index.html" style="text-decoration:none;"><h1>INTERACTA</h1></a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li>
+                    <div class="theme-toggle-wrap" id="themeToggle" title="Toggle light/dark mode">
+                        <div class="toggle-track">
+                            <span class="toggle-icon toggle-sun"><i class="fas fa-sun"></i></span>
+                            <span class="toggle-icon toggle-moon"><i class="fas fa-moon"></i></span>
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="auth-section">
+        <div class="auth-card">
+            <div class="auth-logo">INTERACTA</div>
+            <h2>Welcome back</h2>
+            <p class="auth-sub">Log in to your client dashboard</p>
+
+            <div class="form-group">
+                <label for="loginEmail">Email address</label>
+                <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <div style="position:relative;">
+                    <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" style="padding-right:44px;">
+                    <button id="togglePw" type="button" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#00A8E8;font-size:1rem;">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="auth-card form-row">
+                <label class="remember">
+                    <input type="checkbox" id="remember"> Remember me
+                </label>
+                <a href="#" class="forgot">Forgot password?</a>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="loginBtn">Log In</button>
+
+            <div id="loginMsg" style="margin-top:14px;font-size:0.88rem;text-align:center;min-height:20px;"></div>
+
+            <div class="auth-divider">or</div>
+
+            <!-- Social login buttons -->
+            <button class="btn btn-outline btn-full" style="margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:10px;" onclick="showMsg('Social login coming soon!')">
+                <i class="fab fa-google" style="color:#00A8E8;"></i> Continue with Google
+            </button>
+            <button class="btn btn-outline btn-full" style="display:flex;align-items:center;justify-content:center;gap:10px;" onclick="showMsg('Social login coming soon!')">
+                <i class="fab fa-linkedin" style="color:#00A8E8;"></i> Continue with LinkedIn
+            </button>
+
+            <div class="auth-footer">
+                Don't have an account? <a href="index.html#contact">Contact us to get started</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+    <script src="js/background.js"></script>
+    <script>
+        // Show/hide password
+        document.getElementById('togglePw').addEventListener('click', function () {
+            const input = document.getElementById('loginPassword');
+            const icon  = this.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+
+        function showMsg(text, isError) {
+            const el = document.getElementById('loginMsg');
+            el.style.color = isError ? '#ff4757' : '#00A8E8';
+            el.textContent = text;
+            setTimeout(() => el.textContent = '', 4000);
+        }
+
+        document.getElementById('loginBtn').addEventListener('click', function () {
+            const email = document.getElementById('loginEmail').value.trim();
+            const pw    = document.getElementById('loginPassword').value;
+            if (!email || !pw) {
+                showMsg('Please enter your email and password.', true);
+                return;
+            }
+            // Demo — replace with real auth
+            this.textContent = 'Logging in…';
+            this.disabled = true;
+            setTimeout(() => {
+                showMsg('✅ Logged in! Redirecting to dashboard…');
+                setTimeout(() => {
+                    // Replace with your real dashboard URL
+                    window.location.href = 'index.html';
+                }, 1500);
+            }, 1200);
+        });
+    </script>
+</body>
+</html>

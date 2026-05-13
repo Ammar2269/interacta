@@ -1,0 +1,174 @@
+
+/* INTERACTA - Responsive Styles */
+ 
+/* Tablet 1024px */
+@media (max-width: 1024px) {
+    .navbar { padding: 18px 30px; }
+    .hero-content h1 { font-size: 2.8rem; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .social-hub { width: 360px; height: 360px; }
+}
+ 
+/* Mobile 768px */
+@media (max-width: 768px) {
+ 
+    .navbar { padding: 15px 20px; }
+ 
+    .hamburger {
+        display: flex;
+        z-index: 1100;
+    }
+ 
+    .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+ 
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 23, 31, 0.98);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        gap: 28px;
+        padding: 80px 20px 40px;
+        transform: translateX(100%);
+        transition: transform 0.35s ease;
+        z-index: 1000;
+        list-style: none;
+    }
+ 
+    body.light-mode .nav-menu {
+        background: rgba(255, 255, 255, 0.98);
+    }
+ 
+    .nav-menu.active {
+        transform: translateX(0);
+    }
+ 
+    .nav-link { font-size: 1.2rem; }
+ 
+    .hero { padding-top: 100px; min-height: auto; padding-bottom: 60px; }
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
+ 
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+ 
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+ 
+    .hero-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 36px;
+    }
+ 
+    .stat-card h3 { font-size: 2rem; }
+ 
+    section { padding: 60px 0; }
+    .section-header h2 { font-size: 1.9rem; }
+    .section-header p { font-size: 0.95rem; }
+ 
+    .services-grid { grid-template-columns: 1fr; gap: 20px; }
+    .service-card { padding: 30px 24px; }
+ 
+    .about-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    .about-visual { order: -1; }
+ 
+    .social-hub { width: 280px; height: 280px; margin: 0 auto; }
+    .hub-ring-1 { width: 220px; height: 220px; }
+    .hub-ring-2 { width: 168px; height: 168px; }
+    .hub-ring-3 { width: 274px; height: 274px; }
+    .hub-center { width: 84px; height: 84px; }
+    .hub-wordmark { font-size: 0.72rem; letter-spacing: 1.5px; }
+ 
+    .platform-card { width: 60px; padding: 7px 8px; border-radius: 10px; }
+    .platform-card span { display: none; }
+    .pc-icon { width: 28px; height: 28px; border-radius: 7px; }
+    .pc-icon i { font-size: 0.85rem; }
+    .pc-top { top: 2px; }
+    .pc-top-right { top: 50px; right: 4px; }
+    .pc-right { right: -8px; }
+    .pc-bottom-right { bottom: 50px; right: 4px; }
+    .pc-bottom { bottom: 2px; }
+    .pc-left { left: -8px; }
+ 
+    .about-platforms { max-width: 100%; }
+ 
+    .contact-wrapper { grid-template-columns: 1fr; gap: 36px; }
+ 
+    .footer-content { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+    .footer-section { align-items: center; display: flex; flex-direction: column; }
+    .social-links { justify-content: center; }
+    .footer-logo-section { align-items: center; }
+    .footer-brand-logo { text-align: center; }
+    .footer-bottom p { font-size: 0.8rem; }
+ 
+    .faq-question { font-size: 0.92rem; padding: 18px 16px; }
+    .faq-answer { padding: 0 16px; font-size: 0.88rem; }
+    .faq-item.open .faq-answer { padding: 0 16px 18px; }
+ 
+    .auth-card { padding: 36px 24px; margin: 0 12px; }
+ 
+    .page-hero { padding: 120px 20px 50px; }
+    .page-hero h1 { font-size: 2rem; }
+}
+ 
+/* Small phones 480px */
+@media (max-width: 480px) {
+ 
+    .navbar { padding: 14px 16px; }
+    .logo h1 { font-size: 1.4rem; }
+    .hero-content h1 { font-size: 1.7rem; }
+    .hero-badge { font-size: 0.78rem; padding: 6px 14px; }
+    .hero-stats { gap: 16px; }
+    .stat-card h3 { font-size: 1.7rem; }
+    .btn { padding: 11px 22px; font-size: 0.9rem; }
+    section { padding: 50px 0; }
+    .container { padding: 0 16px; }
+    .section-header h2 { font-size: 1.65rem; }
+    .service-card { padding: 26px 20px; }
+    .service-icon { width: 64px; height: 64px; }
+    .service-icon i { font-size: 2rem; }
+ 
+    .social-hub { width: 240px; height: 240px; }
+    .hub-ring-1 { width: 188px; height: 188px; }
+    .hub-ring-2 { width: 144px; height: 144px; }
+    .hub-ring-3 { width: 234px; height: 234px; }
+    .hub-center { width: 72px; height: 72px; }
+    .hub-wordmark { font-size: 0.62rem; }
+    .platform-card { width: 50px; padding: 6px; }
+    .pc-icon { width: 24px; height: 24px; }
+    .pc-icon i { font-size: 0.75rem; }
+ 
+    .info-item { padding: 16px; gap: 14px; }
+    .info-item i { font-size: 1.3rem; }
+    .auth-card { padding: 30px 18px; }
+    .footer-content { gap: 28px; }
+    .footer-bottom p { font-size: 0.75rem; line-height: 1.8; }
+    .page-hero h1 { font-size: 1.7rem; }
+}
+ 
+/* Very small phones 360px */
+@media (max-width: 360px) {
+    .hero-content h1 { font-size: 1.5rem; }
+    .section-header h2 { font-size: 1.4rem; }
+    .social-hub { width: 210px; height: 210px; }
+    .hub-ring-1 { width: 164px; height: 164px; }
+    .hub-ring-2 { width: 126px; height: 126px; }
+    .hub-ring-3 { width: 204px; height: 204px; }
+}
