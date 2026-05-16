@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Interacta</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+ 
+        .portfolio-section { padding: 70px 0 100px; }
+ 
+        /* ---- Client Card ---- */
+        .client-card {
+            background: rgba(0,36,64,0.75);
+            border: 1px solid rgba(0,168,232,0.15);
+            border-radius: 24px;
+            padding: 44px 48px;
+            margin-bottom: 32px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        body.light-mode .client-card {
+            background: rgba(255,255,255,0.88);
+            border-color: rgba(0,168,232,0.18);
+            box-shadow: 0 6px 30px rgba(0,0,0,0.06);
+        }
+        .client-card:hover {
+            border-color: rgba(0,168,232,0.4);
+            box-shadow: 0 12px 40px rgba(0,168,232,0.1);
+        }
+ 
+        .client-top {
+            display: grid;
+            grid-template-columns: 120px 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+ 
+        .client-logo-box {
+            width: 120px; height: 120px;
+            border-radius: 20px;
+            background: rgba(0,52,89,0.6);
+            border: 1px solid rgba(0,168,232,0.2);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; overflow: hidden;
+        }
+        body.light-mode .client-logo-box { background: #f0f7fc; border-color: rgba(0,168,232,0.25); }
+        .client-logo-box img { width: 90px; height: 90px; object-fit: contain; }
+ 
+        .client-logo-placeholder {
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 6px;
+        }
+        .client-logo-placeholder span {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem; font-weight: 800;
+            background: linear-gradient(135deg,#00A8E8,#007EA7);
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent; text-align: center; line-height: 1.2;
+        }
+ 
+        .client-info { display: flex; flex-direction: column; gap: 10px; }
+        .client-name { font-size: 1.4rem; font-weight: 700; color: #FFFFFF; margin: 0; }
+        body.light-mode .client-name { color: #00171F; }
+ 
+        .client-industry {
+            display: inline-block;
+            background: rgba(0,168,232,0.12);
+            border: 1px solid rgba(0,168,232,0.25);
+            color: #00A8E8; font-size: 0.75rem; font-weight: 600;
+            padding: 4px 12px; border-radius: 20px;
+            letter-spacing: 0.5px; text-transform: uppercase; width: fit-content;
+        }
+        .client-desc { font-size: 0.92rem; line-height: 1.7; opacity: 0.72; margin: 0; }
+ 
+        .client-services { display: flex; flex-direction: column; gap: 0; }
+        .client-services h4 {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: #00A8E8; opacity: 0.8; margin: 0 0 14px;
+        }
+ 
+        .service-bullet {
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,168,232,0.08);
+            cursor: default;
+            transition: padding-left 0.2s ease;
+        }
+        .service-bullet:last-child { border-bottom: none; }
+        .service-bullet.clickable { cursor: pointer; }
+        .service-bullet.clickable:hover { padding-left: 6px; }
+        .service-bullet.clickable:hover .sb-label { color: #00A8E8; }
+ 
+        .sb-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #00A8E8; opacity: 0.45; flex-shrink: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .service-bullet.clickable:hover .sb-dot { opacity: 1; transform: scale(1.3); }
+ 
+        .sb-label {
+            font-size: 0.9rem; font-weight: 500;
+            color: #FFFFFF; opacity: 0.85; flex: 1;
+            transition: color 0.2s ease;
+        }
+        body.light-mode .sb-label { color: #00171F; }
+ 
+        /* Website link — white, no blue */
+        .sb-url {
+            font-size: 0.85rem; font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none; flex: 1;
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+        body.light-mode .sb-url { color: rgba(0,23,31,0.65); }
+        .service-bullet:hover .sb-url { color: #FFFFFF; opacity: 1; }
+        body.light-mode .service-bullet:hover .sb-url { color: #00171F; }
+ 
+        .sb-icon {
+            font-size: 0.8rem; color: #00A8E8;
+            opacity: 0; transition: opacity 0.2s ease;
+        }
+        .service-bullet.clickable:hover .sb-icon { opacity: 1; }
+ 
+        .sb-ext {
+            font-size: 0.7rem; color: rgba(255,255,255,0.3);
+            transition: color 0.2s ease;
+        }
+        .service-bullet:hover .sb-ext { color: rgba(255,255,255,0.7); }
+        body.light-mode .sb-ext { color: rgba(0,23,31,0.3); }
+        body.light-mode .service-bullet:hover .sb-ext { color: rgba(0,23,31,0.6); }
+ 
+        /* ================================================
+           LIGHTBOX / POPUP — shared styles
+        ================================================ */
+        .lightbox-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,10,20,0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 9000;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox-overlay.open { opacity: 1; pointer-events: all; }
+ 
+        .lightbox-panel {
+            background: rgba(0,28,44,0.97);
+            border: 1px solid rgba(0,168,232,0.22);
+            border-radius: 24px;
+            padding: 36px;
+            width: 92%;
+            max-width: 880px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px) scale(0.97);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        body.light-mode .lightbox-panel {
+            background: rgba(255,255,255,0.97);
+            border-color: rgba(0,168,232,0.28);
+        }
+        .lightbox-overlay.open .lightbox-panel { transform: translateY(0) scale(1); }
+ 
+        .lightbox-header {
+            display: flex; align-items: flex-start;
+            justify-content: space-between; margin-bottom: 28px; gap: 16px;
+        }
+        .lightbox-title { font-size: 1.15rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px; }
+        body.light-mode .lightbox-title { color: #00171F; }
+        .lightbox-subtitle { font-size: 0.82rem; color: #00A8E8; opacity: 0.75; }
+ 
+        .lightbox-close {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: rgba(0,168,232,0.12);
+            border: 1px solid rgba(0,168,232,0.25);
+            color: #FFFFFF; font-size: 1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, transform 0.2s; flex-shrink: 0;
+        }
+        body.light-mode .lightbox-close { color: #00171F; }
+        .lightbox-close:hover { background: rgba(0,168,232,0.3); transform: rotate(90deg); }
+ 
+        /* ---- Photo grid ---- */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 16px;
+        }
+        .photo-cell {
+            border-radius: 14px; overflow: hidden;
+            aspect-ratio: 4/3; position: relative;
+            border: 1px solid rgba(0,168,232,0.12);
+            transition: transform 0.25s, box-shadow 0.25s;
+            cursor: zoom-in;
+        }
+        .photo-cell:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,168,232,0.25); }
+        .photo-cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .photo-caption-bar {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 8px 12px;
+            background: linear-gradient(transparent, rgba(0,10,20,0.8));
+            font-size: 0.73rem; color: #FFFFFF;
+            font-family: 'Poppins',sans-serif;
+            opacity: 0; transition: opacity 0.2s;
+        }
+        .photo-cell:hover .photo-caption-bar { opacity: 1; }
+ 
+        /* ---- Social links grid ---- */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 14px;
+        }
+        .social-link-card {
+            display: flex; align-items: center; gap: 16px;
+            padding: 18px 20px;
+            background: rgba(0,52,89,0.5);
+            border: 1px solid rgba(0,168,232,0.15);
+            border-radius: 14px;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        body.light-mode .social-link-card {
+            background: rgba(0,168,232,0.06);
+            border-color: rgba(0,168,232,0.2);
+        }
+        .social-link-card:hover {
+            background: rgba(0,168,232,0.15);
+            border-color: rgba(0,168,232,0.45);
+            transform: translateX(4px);
+        }
+        .slc-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: linear-gradient(135deg,#00A8E8,#007EA7);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .slc-icon i { font-size: 1.2rem; color: #FFFFFF; }
+        .slc-info { display: flex; flex-direction: column; gap: 2px; }
+        .slc-name { font-size: 0.9rem; font-weight: 700; color: #FFFFFF; }
+        body.light-mode .slc-name { color: #00171F; }
+        .slc-handle { font-size: 0.78rem; color: #00A8E8; opacity: 0.8; }
+ 
+        /* ---- Content creation grid (reels + posts) ---- */
+        .content-section-label {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: #00A8E8; opacity: 0.7;
+            margin: 0 0 12px;
+        }
+        .content-section-label:not(:first-child) { margin-top: 24px; }
+ 
+        .reels-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 14px;
+            margin-bottom: 8px;
+        }
+        .reel-card {
+            border-radius: 14px; overflow: hidden;
+            aspect-ratio: 9/16;
+            position: relative;
+            border: 1px solid rgba(0,168,232,0.15);
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s;
+            max-height: 260px;
+        }
+        .reel-card:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,168,232,0.25); }
+        .reel-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .reel-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,10,20,0.35);
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .reel-card:hover .reel-overlay { background: rgba(0,10,20,0.15); }
+        .reel-play {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: rgba(0,168,232,0.85);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .reel-play i { font-size: 1.1rem; color: #FFFFFF; margin-left: 3px; }
+        .reel-label {
+            position: absolute; bottom: 10px; left: 12px; right: 12px;
+            font-size: 0.72rem; color: #FFFFFF;
+            font-family: 'Poppins',sans-serif; font-weight: 600;
+        }
+ 
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 14px;
+        }
+        .post-card {
+            border-radius: 14px; overflow: hidden;
+            aspect-ratio: 1/1; position: relative;
+            border: 1px solid rgba(0,168,232,0.12);
+            transition: transform 0.25s, box-shadow 0.25s;
+            cursor: pointer;
+        }
+        .post-card:hover { transform: scale(1.02); box-shadow: 0 8px 24px rgba(0,168,232,0.25); }
+        .post-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .post-label {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 8px 12px;
+            background: linear-gradient(transparent, rgba(0,10,20,0.75));
+            font-size: 0.7rem; color: #FFFFFF;
+            font-family: 'Poppins',sans-serif;
+            opacity: 0; transition: opacity 0.2s;
+        }
+        .post-card:hover .post-label { opacity: 1; }
+ 
+        /* ---- Paid Ads grid ---- */
+        .ads-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 16px;
+        }
+        .ad-card {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(0,168,232,0.15);
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .ad-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,168,232,0.22); }
+        .ad-image {
+            aspect-ratio: 16/9; overflow: hidden;
+            position: relative;
+        }
+        .ad-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .ad-badge {
+            position: absolute; top: 10px; left: 10px;
+            background: #00A8E8; color: #00171F;
+            font-size: 0.65rem; font-weight: 700;
+            padding: 3px 10px; border-radius: 20px;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .ad-body {
+            padding: 14px 16px;
+            background: rgba(0,36,64,0.7);
+        }
+        body.light-mode .ad-body { background: rgba(0,168,232,0.05); }
+        .ad-platform {
+            font-size: 0.7rem; color: #00A8E8; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;
+        }
+        .ad-headline {
+            font-size: 0.88rem; font-weight: 700; color: #FFFFFF;
+            margin-bottom: 4px; line-height: 1.3;
+        }
+        body.light-mode .ad-headline { color: #00171F; }
+        .ad-cta {
+            font-size: 0.75rem; color: rgba(255,255,255,0.55);
+        }
+        body.light-mode .ad-cta { color: rgba(0,23,31,0.5); }
+ 
+        .lightbox-tip {
+            text-align: center; font-size: 0.76rem;
+            opacity: 0.35; margin-top: 22px; font-style: italic;
+        }
+ 
+        /* ---- Mobile ---- */
+        @media (max-width: 900px) {
+            .client-top { grid-template-columns: 90px 1fr; grid-template-rows: auto auto; }
+            .client-logo-box { width: 90px; height: 90px; grid-row: 1; grid-column: 1; }
+            .client-info { grid-row: 1; grid-column: 2; }
+            .client-services {
+                grid-row: 2; grid-column: 1 / -1;
+                border-top: 1px solid rgba(0,168,232,0.1);
+                padding-top: 20px; margin-top: 4px;
+            }
+        }
+        @media (max-width: 600px) {
+            .client-card { padding: 28px 20px; }
+            .client-top { grid-template-columns: 72px 1fr; }
+            .client-logo-box { width: 72px; height: 72px; border-radius: 14px; }
+            .client-name { font-size: 1.1rem; }
+            .lightbox-panel { padding: 22px 16px; }
+            .photo-grid, .social-grid, .reels-grid, .posts-grid, .ads-grid { grid-template-columns: 1fr; }
+            .reel-card { max-height: 200px; }
+        }
+ 
+    </style>
+</head>
+<body>
+ 
+    <canvas id="bgCanvas"></canvas>
+ 
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo"><h1>INTERACTA</h1></div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="login.html" class="btn btn-primary nav-btn">Login</a></li>
+                <li>
+                    <div class="theme-toggle-wrap" id="themeToggle" title="Toggle light/dark mode">
+                        <div class="toggle-track">
+                            <span class="toggle-icon toggle-sun"><i class="fas fa-sun"></i></span>
+                            <span class="toggle-icon toggle-moon"><i class="fas fa-moon"></i></span>
+                            <div class="toggle-thumb"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+ 
+    <div class="page-hero">
+        <div class="container">
+            <h1>Our <span class="highlight">Portfolio</span></h1>
+            <p>Real brands. Real results. Here's a look at what we've built together.</p>
+        </div>
+    </div>
+ 
+    <section class="portfolio-section">
+        <div class="container">
+ 
+            <!-- ===== CLIENT 1 — NOVA CAFE ===== -->
+            <div class="client-card">
+                <div class="client-top">
+                    <div class="client-logo-box">
+                        <div class="client-logo-placeholder"><span>NOVA<br>CAFE</span></div>
+                    </div>
+                    <div class="client-info">
+                        <span class="client-industry">Food & Beverage</span>
+                        <h3 class="client-name">Nova Cafe</h3>
+                        <p class="client-desc">A specialty coffee brand based in Dubai focused on third-wave brewing and minimalist interiors. Nova came to us to build a loyal online community and grow their delivery orders through compelling visual content.</p>
+                    </div>
+                    <div class="client-services">
+                        <h4>What we did</h4>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('nova','photos')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Photography</span>
+                            <i class="fas fa-images sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('nova','social')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Social Media Management</span>
+                            <i class="fas fa-share-nodes sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('nova','content')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Content Creation</span>
+                            <i class="fas fa-film sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('nova','ads')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Paid Advertising</span>
+                            <i class="fas fa-bullhorn sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="window.open('https://novacafe.ae','_blank')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-url">novacafe.ae</span>
+                            <i class="fas fa-arrow-up-right-from-square sb-ext"></i>
+                        </div>
+ 
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- ===== CLIENT 2 — PEAK FIT ===== -->
+            <div class="client-card">
+                <div class="client-top">
+                    <div class="client-logo-box">
+                        <div class="client-logo-placeholder"><span>PEAK<br>FIT</span></div>
+                    </div>
+                    <div class="client-info">
+                        <span class="client-industry">Health & Fitness</span>
+                        <h3 class="client-name">Peak Fit Studio</h3>
+                        <p class="client-desc">A premium fitness studio chain across the UAE offering HIIT, yoga, and personal training. They needed a complete digital overhaul to match their high-end in-person experience and attract a new generation of members.</p>
+                    </div>
+                    <div class="client-services">
+                        <h4>What we did</h4>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('peak','photos')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Photography</span>
+                            <i class="fas fa-images sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('peak','social')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Social Media Management</span>
+                            <i class="fas fa-share-nodes sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('peak','content')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Content Creation</span>
+                            <i class="fas fa-film sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('peak','ads')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Paid Advertising</span>
+                            <i class="fas fa-bullhorn sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="window.open('https://peakfitstudio.com','_blank')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-url">peakfitstudio.com</span>
+                            <i class="fas fa-arrow-up-right-from-square sb-ext"></i>
+                        </div>
+ 
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- ===== CLIENT 3 — LUX DECOR ===== -->
+            <div class="client-card">
+                <div class="client-top">
+                    <div class="client-logo-box">
+                        <div class="client-logo-placeholder"><span>LUX<br>DECOR</span></div>
+                    </div>
+                    <div class="client-info">
+                        <span class="client-industry">Interior Design</span>
+                        <h3 class="client-name">Lux Decor</h3>
+                        <p class="client-desc">A high-end interior design firm working on residential and commercial projects across the Gulf. Lux needed their social media to reflect the same quality and elegance as their physical spaces and reach new affluent clients.</p>
+                    </div>
+                    <div class="client-services">
+                        <h4>What we did</h4>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('lux','photos')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Photography</span>
+                            <i class="fas fa-images sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('lux','social')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Social Media Management</span>
+                            <i class="fas fa-share-nodes sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('lux','content')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Content Creation</span>
+                            <i class="fas fa-film sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="openPopup('lux','ads')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-label">Paid Advertising</span>
+                            <i class="fas fa-bullhorn sb-icon"></i>
+                        </div>
+ 
+                        <div class="service-bullet clickable" onclick="window.open('https://luxdecor.ae','_blank')">
+                            <span class="sb-dot"></span>
+                            <span class="sb-url">luxdecor.ae</span>
+                            <i class="fas fa-arrow-up-right-from-square sb-ext"></i>
+                        </div>
+ 
+                    </div>
+                </div>
+            </div>
+ 
+            <div style="text-align:center;margin-top:60px;">
+                <p style="opacity:0.65;margin-bottom:20px;">Want results like these for your brand?</p>
+                <a href="index.html#contact" class="btn btn-primary">Start a Project</a>
+            </div>
+ 
+        </div>
+    </section>
+ 
+    <!-- ===================================================
+         POPUP OVERLAY — single overlay, content swapped by JS
+    =================================================== -->
+    <div class="lightbox-overlay" id="popupOverlay" onclick="closeOnBg(event)">
+        <div class="lightbox-panel" id="popupPanel">
+            <div class="lightbox-header">
+                <div>
+                    <div class="lightbox-title" id="popupTitle"></div>
+                    <div class="lightbox-subtitle" id="popupSubtitle"></div>
+                </div>
+                <button class="lightbox-close" onclick="closePopup()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="popupBody"></div>
+            <p class="lightbox-tip" id="popupTip"></p>
+        </div>
+    </div>
+ 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>INTERACTA</h3>
+                    <p>Transforming social presence into business growth.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-logo-section">
+                    <div class="footer-brand-logo">INTERACTA</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Interacta. All rights reserved. &nbsp;|&nbsp; <a href="terms.html" style="color:#00A8E8;text-decoration:none;">Terms & Conditions</a></p>
+            </div>
+        </div>
+    </footer>
+ 
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/background.js"></script>
+ 
+    <script>
+    // ============================================
+    // ALL CLIENT DATA
+    // Unsplash photos — relevant to each brand
+    // Replace src URLs with your own images when ready
+    // ============================================
+    const clientData = {
+ 
+        nova: {
+            name: 'Nova Cafe',
+            photos: {
+                title: 'Nova Cafe — Photography',
+                subtitle: 'Brand & product photography',
+                items: [
+                    { src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80', caption: 'Signature latte art' },
+                    { src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80', caption: 'Cafe interior ambiance' },
+                    { src: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80', caption: 'Menu product styling' },
+                    { src: 'https://images.unsplash.com/photo-1521302200778-33500795e128?w=800&q=80', caption: 'Barista at work' }
+                ]
+            },
+            social: {
+                title: 'Nova Cafe — Social Media',
+                subtitle: 'Managed platforms & accounts',
+                links: [
+                    { icon: 'fab fa-instagram', name: 'Instagram', handle: '@novacafe.dxb', url: 'https://instagram.com' },
+                    { icon: 'fab fa-facebook', name: 'Facebook', handle: 'Nova Cafe Dubai', url: 'https://facebook.com' },
+                    { icon: 'fab fa-tiktok', name: 'TikTok', handle: '@novacafe', url: 'https://tiktok.com' },
+                    { icon: 'fab fa-twitter', name: 'X / Twitter', handle: '@novacafedxb', url: 'https://twitter.com' }
+                ]
+            },
+            content: {
+                title: 'Nova Cafe — Content Creation',
+                subtitle: 'Reels & posts produced for Instagram & TikTok',
+                reels: [
+                    { src: 'https://images.unsplash.com/photo-1611432579402-7037e3e2c1e4?w=400&q=80', label: 'Morning brew reel' },
+                    { src: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&q=80', label: 'Latte art timelapse' }
+                ],
+                posts: [
+                    { src: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80', label: 'New menu drop post' },
+                    { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80', label: 'Weekend vibes post' }
+                ]
+            },
+            ads: {
+                title: 'Nova Cafe — Paid Advertising',
+                subtitle: 'Ad creatives run on Instagram & Facebook',
+                items: [
+                    {
+                        src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80',
+                        platform: 'Instagram Stories',
+                        headline: 'Start your morning right.',
+                        cta: 'Order Now — Free delivery over AED 50'
+                    },
+                    {
+                        src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&q=80',
+                        platform: 'Facebook Feed',
+                        headline: 'Dubai\'s best specialty coffee.',
+                        cta: 'Visit us in JLT — Open 7am to 11pm'
+                    },
+                    {
+                        src: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80',
+                        platform: 'Instagram Reels Ad',
+                        headline: 'Fresh. Every. Cup.',
+                        cta: 'Download the app & get 20% off'
+                    },
+                    {
+                        src: 'https://images.unsplash.com/photo-1521302200778-33500795e128?w=800&q=80',
+                        platform: 'TikTok Ad',
+                        headline: 'The coffee you\'ve been looking for.',
+                        cta: 'Swipe up to order'
+                    }
+                ]
+            }
+        },
+ 
+        peak: {
+            name: 'Peak Fit Studio',
+            photos: {
+                title: 'Peak Fit Studio — Photography',
+                subtitle: 'Fitness & lifestyle photography',
+                items: [
+                    { src: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80', caption: 'HIIT class in action' },
+                    { src: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80', caption: 'Studio interior' },
+                    { src: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80', caption: 'Personal training session' },
+                    { src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80', caption: 'Yoga flow series' }
+                ]
+            },
+            social: {
+                title: 'Peak Fit Studio — Social Media',
+                subtitle: 'Managed platforms & accounts',
+                links: [
+                    { icon: 'fab fa-instagram', name: 'Instagram', handle: '@peakfit.ae', url: 'https://instagram.com' },
+                    { icon: 'fab fa-facebook', name: 'Facebook', handle: 'Peak Fit Studio UAE', url: 'https://facebook.com' },
+                    { icon: 'fab fa-tiktok', name: 'TikTok', handle: '@peakfitstudio', url: 'https://tiktok.com' },
+                    { icon: 'fab fa-youtube', name: 'YouTube', handle: 'Peak Fit Studio', url: 'https://youtube.com' }
+                ]
+            },
+            content: {
+                title: 'Peak Fit Studio — Content Creation',
+                subtitle: 'Reels & posts produced for Instagram & TikTok',
+                reels: [
+                    { src: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=400&q=80', label: 'HIIT workout reel' },
+                    { src: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&q=80', label: 'Trainer spotlight reel' }
+                ],
+                posts: [
+                    { src: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80', label: 'New class launch post' },
+                    { src: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&q=80', label: 'Studio tour post' }
+                ]
+            },
+            ads: {
+                title: 'Peak Fit Studio — Paid Advertising',
+                subtitle: 'Ad creatives run on Instagram & Facebook',
+                items: [
+                    {
+                        src: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80',
+                        platform: 'Instagram Feed',
+                        headline: 'Your strongest self starts here.',
+                        cta: 'First class free — Book now'
+                    },
+                    {
+                        src: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80',
+                        platform: 'Facebook Feed',
+                        headline: 'Dubai\'s premium fitness studio.',
+                        cta: '3 locations — Join today'
+                    },
+                    {
+                        src: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&q=80',
+                        platform: 'Instagram Stories',
+                        headline: 'Train smarter. Not harder.',
+                        cta: 'Limited memberships available'
+                    },
+                    {
+                        src: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80',
+                        platform: 'TikTok Ad',
+                        headline: 'Join 2,000+ members.',
+                        cta: 'Swipe up to claim your free trial'
+                    }
+                ]
+            }
+        },
+ 
+        lux: {
+            name: 'Lux Decor',
+            photos: {
+                title: 'Lux Decor — Photography',
+                subtitle: 'Interior design & space photography',
+                items: [
+                    { src: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80', caption: 'Living room concept' },
+                    { src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80', caption: 'Detail & texture shot' },
+                    { src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80', caption: 'Commercial lobby design' },
+                    { src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80', caption: 'Bedroom suite styling' }
+                ]
+            },
+            social: {
+                title: 'Lux Decor — Social Media',
+                subtitle: 'Managed platforms & accounts',
+                links: [
+                    { icon: 'fab fa-instagram', name: 'Instagram', handle: '@luxdecor.ae', url: 'https://instagram.com' },
+                    { icon: 'fab fa-pinterest', name: 'Pinterest', handle: 'Lux Decor', url: 'https://pinterest.com' },
+                    { icon: 'fab fa-linkedin', name: 'LinkedIn', handle: 'Lux Decor LLC', url: 'https://linkedin.com' },
+                    { icon: 'fab fa-facebook', name: 'Facebook', handle: 'Lux Decor Gulf', url: 'https://facebook.com' }
+                ]
+            },
+            content: {
+                title: 'Lux Decor — Content Creation',
+                subtitle: 'Reels & posts produced for Instagram & Pinterest',
+                reels: [
+                    { src: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&q=80', label: 'Before & after reveal reel' },
+                    { src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&q=80', label: 'Design process reel' }
+                ],
+                posts: [
+                    { src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&q=80', label: 'Material mood board post' },
+                    { src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80', label: 'Project showcase post' }
+                ]
+            },
+            ads: {
+                title: 'Lux Decor — Paid Advertising',
+                subtitle: 'Ad creatives run on Instagram & Facebook',
+                items: [
+                    {
+                        src: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80',
+                        platform: 'Instagram Feed',
+                        headline: 'Spaces that tell your story.',
+                        cta: 'Book a free consultation today'
+                    },
+                    {
+                        src: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80',
+                        platform: 'Facebook Feed',
+                        headline: 'Luxury interiors across the Gulf.',
+                        cta: 'View our portfolio — luxdecor.ae'
+                    },
+                    {
+                        src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80',
+                        platform: 'Instagram Stories',
+                        headline: 'Your dream space, designed.',
+                        cta: 'Swipe up for a free quote'
+                    },
+                    {
+                        src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80',
+                        platform: 'Pinterest Ad',
+                        headline: 'Redefining luxury living.',
+                        cta: 'Save this design — Contact us'
+                    }
+                ]
+            }
+        }
+    };
+ 
+    // ============================================
+    // POPUP BUILDER
+    // ============================================
+    function openPopup(clientKey, type) {
+        const client = clientData[clientKey];
+        if (!client) return;
+        const data = client[type];
+ 
+        document.getElementById('popupTitle').textContent = data.title;
+        document.getElementById('popupSubtitle').textContent = data.subtitle;
+ 
+        const body = document.getElementById('popupBody');
+        const tip  = document.getElementById('popupTip');
+        body.innerHTML = '';
+        tip.textContent = '';
+ 
+        if (type === 'photos') {
+            let html = '<div class="photo-grid">';
+            data.items.forEach(p => {
+                html += `
+                    <div class="photo-cell">
+                        <img src="${p.src}" alt="${p.caption}" loading="lazy"/>
+                        <div class="photo-caption-bar">${p.caption}</div>
+                    </div>`;
+            });
+            html += '</div>';
+            body.innerHTML = html;
+            tip.textContent = 'Replace these with your real photos by updating the src URLs in portfolio.html';
+ 
+        } else if (type === 'social') {
+            let html = '<div class="social-grid">';
+            data.links.forEach(l => {
+                html += `
+                    <a class="social-link-card" href="${l.url}" target="_blank" rel="noopener">
+                        <div class="slc-icon"><i class="${l.icon}"></i></div>
+                        <div class="slc-info">
+                            <div class="slc-name">${l.name}</div>
+                            <div class="slc-handle">${l.handle}</div>
+                        </div>
+                        <i class="fas fa-arrow-up-right-from-square" style="font-size:0.7rem;color:#00A8E8;opacity:0.5;margin-left:auto;"></i>
+                    </a>`;
+            });
+            html += '</div>';
+            body.innerHTML = html;
+            tip.textContent = 'Update the href URLs with the real social media links for this client';
+ 
+        } else if (type === 'content') {
+            let html = '<p class="content-section-label">Reels</p><div class="reels-grid">';
+            data.reels.forEach(r => {
+                html += `
+                    <div class="reel-card">
+                        <img src="${r.src}" alt="${r.label}" loading="lazy"/>
+                        <div class="reel-overlay">
+                            <div class="reel-play"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="reel-label">${r.label}</div>
+                    </div>`;
+            });
+            html += '</div><p class="content-section-label">Posts</p><div class="posts-grid">';
+            data.posts.forEach(p => {
+                html += `
+                    <div class="post-card">
+                        <img src="${p.src}" alt="${p.label}" loading="lazy"/>
+                        <div class="post-label">${p.label}</div>
+                    </div>`;
+            });
+            html += '</div>';
+            body.innerHTML = html;
+            tip.textContent = 'Replace placeholder images with your real reels thumbnails and post screenshots';
+ 
+        } else if (type === 'ads') {
+            let html = '<div class="ads-grid">';
+            data.items.forEach(a => {
+                html += `
+                    <div class="ad-card">
+                        <div class="ad-image">
+                            <img src="${a.src}" alt="${a.headline}" loading="lazy"/>
+                            <span class="ad-badge">Ad</span>
+                        </div>
+                        <div class="ad-body">
+                            <div class="ad-platform">${a.platform}</div>
+                            <div class="ad-headline">${a.headline}</div>
+                            <div class="ad-cta">${a.cta}</div>
+                        </div>
+                    </div>`;
+            });
+            html += '</div>';
+            body.innerHTML = html;
+            tip.textContent = 'Replace with your real ad creative screenshots when available';
+        }
+ 
+        document.getElementById('popupOverlay').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+ 
+    function closePopup() {
+        document.getElementById('popupOverlay').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+ 
+    function closeOnBg(e) {
+        if (e.target === document.getElementById('popupOverlay')) closePopup();
+    }
+ 
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closePopup();
+    });
+
+    // ── SERVICE FILTER HIGHLIGHT (from index.html service cards) ──────────────
+    (function () {
+        const params = new URLSearchParams(window.location.search);
+        const filter = params.get('filter');
+        if (!filter) return;
+
+        const filterMap = {
+            photos:  { match: "'photos'",  label: 'Photography' },
+            content: { match: "'content'", label: 'Content Creation' },
+            social:  { match: "'social'",  label: 'Social Media Management' },
+            ads:     { match: "'ads'",     label: 'Paid Advertising' },
+            web:     { match: 'web',       label: 'Web Development' }
+        };
+
+        const rule = filterMap[filter];
+        if (!rule) return;
+
+        const bullets = document.querySelectorAll('.service-bullet');
+        let firstMatch = null;
+
+        bullets.forEach(bullet => {
+            const onclick = bullet.getAttribute('onclick') || '';
+            const label   = bullet.querySelector('.sb-label');
+
+            const isMatch = filter === 'web'
+                ? (onclick.includes('.ae') || onclick.includes('.com') && !onclick.includes("'"))
+                : onclick.includes(rule.match);
+
+            if (isMatch) {
+                bullet.style.background    = 'rgba(0,168,232,0.12)';
+                bullet.style.borderRadius  = '10px';
+                bullet.style.paddingLeft   = '10px';
+                bullet.style.marginBottom  = '4px';
+                bullet.style.borderBottom  = '1px solid rgba(0,168,232,0.25)';
+                if (label) {
+                    label.style.color      = '#00A8E8';
+                    label.style.opacity    = '1';
+                    label.style.fontWeight = '700';
+                }
+                const dot = bullet.querySelector('.sb-dot');
+                if (dot) { dot.style.opacity = '1'; dot.style.transform = 'scale(1.4)'; }
+
+                if (!firstMatch) firstMatch = bullet;
+            }
+        });
+
+        // Scroll to first match with fixed-header offset
+        if (firstMatch) {
+            setTimeout(() => {
+                const card = firstMatch.closest('.client-card');
+                if (!card) return;
+                const headerH = document.querySelector('.header')?.offsetHeight || 80;
+                const top = card.getBoundingClientRect().top + window.pageYOffset - headerH - 24;
+                window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            }, 450);
+        }
+
+        // Toast — safe on mobile (no overlap with browser chrome)
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: env(safe-area-inset-bottom, 0px);
+            bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,168,232,0.15);
+            border: 1px solid rgba(0,168,232,0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #00A8E8;
+            z-index: 9999;
+            white-space: nowrap;
+            max-width: calc(100vw - 40px);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        `;
+        toast.innerHTML = `<i class="fas fa-filter" style="margin-right:7px;font-size:0.75rem;"></i>Highlighting: ${rule.label}`;
+        document.body.appendChild(toast);
+
+        // Fade in then fade out
+        requestAnimationFrame(() => {
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 500);
+            }, 3200);
+        });
+
+    })();
+    </script>
+ 
+</body>
+</html>
