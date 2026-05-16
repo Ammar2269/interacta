@@ -16,10 +16,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
+ 
     <!-- Animated Background Canvas -->
     <canvas id="bgCanvas"></canvas>
-
+ 
     <!-- Header / Navigation -->
     <header class="header">
         <nav class="navbar">
@@ -30,7 +30,7 @@
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="Portfolio.html" class="nav-link">Portfolio</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><a href="faq.html" class="nav-link">FAQ</a></li>
                 <li><a href="login.html" class="btn btn-primary nav-btn">Login</a></li>
@@ -52,11 +52,12 @@
             </div>
         </nav>
     </header>
-
+ 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
+                <span class="hero-badge">Start your journey</span>
                 <h1>Grow Your Brand With <span class="highlight">Interacta</span></h1>
                 <p>We transform your social media presence into a powerful growth engine. Strategic content, authentic engagement, and measurable results.</p>
                 <div class="hero-buttons">
@@ -64,10 +65,23 @@
                     <a href="#services" class="btn btn-outline">Our Services</a>
                 </div>
             </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <h3 class="counter" data-target="500">0</h3>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="counter" data-target="5000">0</h3>
+                    <p>Posts Published</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="counter" data-target="300">0</h3>
+                    <p>Campaigns</p>
+                </div>
             </div>
         </div>
     </section>
-
+ 
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
@@ -76,40 +90,126 @@
                 <p>Comprehensive social media solutions tailored to your brand</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <a href="Portfolio.html?filter=social" class="service-card service-card-link">
                     <div class="service-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Strategy & Planning</h3>
                     <p>Data-driven social media strategies aligned with your business goals and target audience.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-card-cta">See in Portfolio <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="Portfolio.html?filter=content" class="service-card service-card-link">
                     <div class="service-icon"><i class="fas fa-pen-fancy"></i></div>
                     <h3>Content Creation</h3>
                     <p>Eye-catching graphics, engaging captions, and professional copywriting that converts.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-card-cta">See in Portfolio <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="Portfolio.html?filter=social" class="service-card service-card-link">
                     <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
                     <h3>Scheduling & Publishing</h3>
                     <p>Consistent posting schedule optimized for maximum reach and engagement.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-card-cta">See in Portfolio <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="Portfolio.html?filter=web" class="service-card service-card-link">
                     <div class="service-icon"><i class="fas fa-code"></i></div>
                     <h3>Web Development</h3>
                     <p>Custom, high-performance websites and landing pages built to convert visitors into loyal customers.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-card-cta">See in Portfolio <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="Portfolio.html?filter=photos" class="service-card service-card-link">
                     <div class="service-icon"><i class="fas fa-camera"></i></div>
                     <h3>Photography</h3>
                     <p>Professional brand photography and visual content that tells your story and stops the scroll.</p>
-                </div>
-                <div class="service-card">
+                    <span class="service-card-cta">See in Portfolio <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="Portfolio.html?filter=ads" class="service-card service-card-link">
                     <div class="service-icon"><i class="fas fa-ad"></i></div>
                     <h3>Paid Advertising</h3>
                     <p>Targeted ad campaigns on Facebook, Instagram, LinkedIn, and TikTok.</p>
-                </div>
+                    <span class="service-card-cta">See in Portfolio <i class="fas fa-arrow-right"></i></span>
+                </a>
             </div>
+ 
+            <style>
+                /* Make the grid collapse properly on all screen sizes */
+                .services-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                }
+ 
+                .service-card-link {
+                    text-decoration: none;
+                    color: inherit;
+                    display: flex;
+                    flex-direction: column;
+                    cursor: pointer;
+                    position: relative;
+                    /* Prevent border flash on mobile tap */
+                    -webkit-tap-highlight-color: transparent;
+                    border: 1px solid transparent;
+                    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+                }
+ 
+                /* Desktop hover */
+                @media (hover: hover) {
+                    .service-card-link:hover {
+                        transform: translateY(-6px);
+                        border-color: rgba(0,168,232,0.5);
+                        box-shadow: 0 16px 40px rgba(0,168,232,0.18);
+                    }
+                    .service-card-link:hover .service-card-cta {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                    .service-card-link:hover .service-card-cta i {
+                        transform: translateX(3px);
+                    }
+                }
+ 
+                /* Mobile tap feedback */
+                @media (hover: none) {
+                    .service-card-link:active {
+                        transform: scale(0.97);
+                        border-color: rgba(0,168,232,0.45);
+                        box-shadow: 0 8px 24px rgba(0,168,232,0.2);
+                    }
+                    /* Always show the CTA on touch devices */
+                    .service-card-cta {
+                        opacity: 1 !important;
+                        transform: translateY(0) !important;
+                    }
+                }
+ 
+                .service-card-cta {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    margin-top: auto;
+                    padding-top: 14px;
+                    font-size: 0.82rem;
+                    font-weight: 600;
+                    color: #00A8E8;
+                    opacity: 0;
+                    transform: translateY(4px);
+                    transition: opacity 0.25s ease, transform 0.25s ease;
+                    justify-content: center;
+                }
+                .service-card-cta i {
+                    font-size: 0.75rem;
+                    transition: transform 0.2s ease;
+                }
+ 
+                /* Single column on small phones */
+                @media (max-width: 480px) {
+                    .services-grid {
+                        grid-template-columns: 1fr;
+                    }
+                    .service-card-cta {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            </style>
         </div>
     </section>
-
+ 
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
@@ -182,8 +282,8 @@
             </div>
         </div>
     </section>
-
-
+ 
+ 
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -227,7 +327,7 @@
             </div>
         </div>
     </section>
-
+ 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -248,6 +348,7 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
                         <li><a href="#contact">Contact</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="login.html">Login</a></li>
@@ -264,9 +365,10 @@
             </div>
         </div>
     </footer>
-
+ 
     <script src="js/main.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/background.js"></script>
 </body>
 </html>
+ 
